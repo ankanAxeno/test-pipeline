@@ -6,4 +6,5 @@ package.json
 package-lock.json
 test/*
 _*
-*/tools/sanity/
+/tools/sanity/
+/scripts/tools/sanity/
