@@ -10,8 +10,18 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
-import { mount } from './tools/sanity/index.js';
-
+function initSanity() {
+  const sidekick = document.querySelector('aem-sidekick');
+  if (!sidekick) {
+    document.addEventListener('sidekick-ready', initSanity, { once: true });
+    return;
+  }
+  sidekick.addEventListener('custom:sanity', async (event) => {
+    const { mount } = await import('../tools/sanity/index.js');
+    mount(event.detail);
+  });
+}
+initSanity();
 /**
  * Moves all the attributes from a given elmenet to another given element.
  * @param {Element} from the element to copy attributes from
@@ -176,22 +186,12 @@ function loadDelayed() {
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
-function initSanity() {
-  const sidekick = document.querySelector('aem-sidekick');
-  if (!sidekick) {
-    document.addEventListener('sidekick-ready', initSanity, { once: true });
-    return;
-  }
-  sidekick.addEventListener('custom:sanity', (event) => {
-    mount(event.detail);
-  });
-}
+
 
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
-  initSanity();
 }
 
 loadPage();
