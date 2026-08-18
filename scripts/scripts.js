@@ -10,6 +10,7 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
+import { mount } from '../tools/sanity/index.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -181,8 +182,7 @@ function initSanity() {
     document.addEventListener('sidekick-ready', initSanity, { once: true });
     return;
   }
-  sidekick.addEventListener('custom:sanity', async (event) => {
-    const { mount } = await import('./tools/sanity/index.js');
+  sidekick.addEventListener('custom:sanity', (event) => {
     mount(event.detail);
   });
 }
