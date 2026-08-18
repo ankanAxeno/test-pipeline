@@ -10,7 +10,7 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
-import { mount } from '../tools/sanity/index.js';
+import { mount } from './tools/sanity/index.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
