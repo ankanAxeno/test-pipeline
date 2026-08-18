@@ -187,8 +187,6 @@ function initSanity() {
   });
 }
 
-initSanity();
-
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
@@ -196,3 +194,4 @@ async function loadPage() {
 }
 
 loadPage();
+initSanity();
