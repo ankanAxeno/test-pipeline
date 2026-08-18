@@ -182,7 +182,7 @@ function initSanity() {
     return;
   }
   sidekick.addEventListener('custom:sanity', async (event) => {
-    const { mount } = await import('../tools/sanity/index.js');
+    const { mount } = await import('./tools/sanity/index.js');
     mount(event.detail);
   });
 }

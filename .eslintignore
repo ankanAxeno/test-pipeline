@@ -2,3 +2,4 @@ helix-importer-ui
 dompurify.min.js
 *.min.js
 /tools/sanity/
+/scripts/tools/sanity
