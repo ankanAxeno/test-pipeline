@@ -175,6 +175,19 @@ function loadDelayed() {
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
+function initSanity() {
+  const sidekick = document.querySelector('aem-sidekick');
+  if (!sidekick) {
+    document.addEventListener('sidekick-ready', initSanity, { once: true });
+    return;
+  }
+  sidekick.addEventListener('custom:sanity', async (event) => {
+    const { mount } = await import('../tools/sanity/index.js');
+    mount(event.detail);
+  });
+}
+
+initSanity();
 
 async function loadPage() {
   await loadEager(document);
