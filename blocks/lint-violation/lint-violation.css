@@ -1,0 +1,11 @@
+/* Intentionally violating stylelint rules for PR check testing */
+.lint-violation {
+  color: #FFFFFF;
+  color: #000000;
+  margin: 10px;
+  margin: 20px;
+}
+
+.empty-block {
+
+}
