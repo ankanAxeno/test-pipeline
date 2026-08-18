@@ -1,0 +1,29 @@
+name: Lighthouse CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lighthouse:
+    name: Lighthouse Audit (${{ matrix.device }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        device: [desktop, mobile]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Wait for AEM Code Sync
+        run: sleep 10
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://${{ github.head_ref || github.ref_name }}--test-pipeline--ankanaxeno.aem.page/
+          configPath: './lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          extraArgs: ${{ matrix.device == 'desktop' && '--collect.settings.preset=desktop' || '' }}
