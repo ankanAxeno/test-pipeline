@@ -1,0 +1,23 @@
+name: Deploy to Cloud Manager
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Execution
+        uses: adobe/aio-cloudmanager-create-execution-action@v1.2.0
+        with:
+          CLIENTID: ${{ secrets.CM_CLIENT_ID }}
+          CLIENTSECRET: ${{ secrets.CM_CLIENT_SECRET }}
+          TECHNICALACCOUNTID: ${{ secrets.CM_TA_ID }}
+          TECHNICALACCOUNTEMAIL: ${{ secrets.CM_TA_EMAIL }}
+          IMSORGID: ${{ secrets.CM_ORG_ID }}
+          PIPELINEID: ${{ secrets.CM_PIPELINE_ID }}
+          PROGRAMID: ${{ secrets.CM_PROGRAM_ID }}
+          OAUTHENABLED: 'true'
