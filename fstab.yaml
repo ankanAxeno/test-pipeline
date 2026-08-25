@@ -1,5 +1,0 @@
-mountpoints:
-  /:
-    url: "https://author-p8803-e1283844.adobeaemcloud.com/bin/franklin.delivery/ankanAxeno/test-pipeline/develop"
-    type: "markup"
-    suffix: ".html"
